@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="boxed-panel">
+  <h2 class="events-heading">Prossimi Eventi a Milano</h2>
+</div>
+
+{%- set events = load_data(path="data/events.json") %}
+{%- set date_format = "%a %-d %b %Y" %}
+<div class="event-list">
+  {%- for event in events %}
+  <article class="event">
+    <aside class="event-when">
+      <h3 class="event-dates">
+        {% if event.dateTo %}<small>da </small>{% endif -%}
+        <time datetime="{{ event.date }}">{{ event.date | date(format=date_format, timezone="Europe/Rome",
+          locale="it_IT") }}</time>
+        {%- if event.dateTo %}
+        <div class="event-end-date">
+          <small>a </small>
+          <time datetime="{{ event.dateTo }}">{{ event.dateTo | date(format=date_format, timezone="Europe/Rome",
+            locale="it_IT") }}</time>
+        </div>
+        {%- endif %}
+      </h3>
+      <div class="event-venue">{{ event.venue }}</div>
+    </aside>
+
+    <div class="event-what">
+      <h3 class="event-title">
+        <a href="{{ event.url }}">{{ event.title }}</a>
+      </h3>
+      <div class="event-organizer">{{ event.meetupName }}</div>
+    </div>
+  </article>
+  {%- endfor %}
+</div>
+{% endblock %}

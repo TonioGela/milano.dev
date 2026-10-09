@@ -1,0 +1,55 @@
+{%- set description = config.description -%}
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="{{ get_url(path='favicon.ico', cachebust=true) }}" />
+  <link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) }}" />
+  <title>{{ config.title }}</title>
+  <meta name="description" content="{{ description }}" />
+  <meta property="og:title" content="{{ config.title }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:type" content="website" />
+  <script type="speculationrules">{"prerender": [{"where": {"href_matches": "/*"}, "eagerness": "moderate"}]}</script>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@MilanoDev" />
+  <meta name="twitter:title" content="{{ config.title }}" />
+  <meta name="twitter:description" content="{{ description }}" />
+</head>
+
+<body>
+  <div class="page">
+    <aside class="page-sidebar"></aside>
+
+    <div class="page-column">
+      <nav class="site-nav">
+        <div class="site-nav-item">
+          <a class="site-nav-link" href="/about" aria-label="about">
+            <span class="site-nav-label">about</span>
+            <svg class="site-nav-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 16v-4M12 8h.01" />
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      <header class="site-header">
+        {%- set logo = resize_image(path="static/logo.png", width=280, height=280, op="fit", format="webp") %}
+        <img class="site-logo" src="{{ logo.url }}" width="140" height="140" alt="" fetchpriority="high" />
+        <div class="site-title-wrapper">
+          <h1 class="site-title"><a href="/">{{ config.title }}</a></h1>
+        </div>
+      </header>
+
+      <main class="page-content">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,299 @@
+$color-sidebar-dark: #202226;
+$color-text-on-dark: #dfddd9;
+$color-page-background: #faf9f5;
+$color-accent-teal: #40a798;
+$color-body-text: hsla(0, 0%, 0%, 0.8);
+
+$font-system-sans: system-ui, sans-serif;
+$font-weight-light: 300;
+$font-weight-black: 900;
+
+$rhythm: 1.45rem;
+$corner-radius: 0.25rem;
+$panel-border-width: 4px;
+$content-column-indent: 60px;
+$event-text-width: 420px;
+$event-dates-overhang: 560px;
+$desktop-min-width: 48rem;
+
+@mixin on-desktop {
+  @media (min-width: $desktop-min-width) {
+    @content;
+  }
+}
+
+@mixin on-mobile {
+  @media (max-width: calc(#{$desktop-min-width} - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin faded-until-hovered {
+  opacity: 0.4;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+small {
+  font-size: 80%;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+html {
+  font-size: 112.5%;
+  line-height: 1.45;
+  overflow-y: scroll;
+
+  @media (max-width: 480px) {
+    font-size: 100%;
+  }
+}
+
+body {
+  font-family: $font-system-sans;
+  color: $color-body-text;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: normal;
+  font-feature-settings: "kern", "liga", "clig", "calt";
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.62671rem;
+  margin-bottom: $rhythm;
+}
+
+p {
+  margin-bottom: $rhythm;
+}
+
+.page {
+  display: flex;
+}
+
+.page-sidebar {
+  min-height: 100vh;
+
+  @include on-mobile {
+    width: 0.625rem;
+    flex-shrink: 0;
+    background-color: $color-accent-teal;
+  }
+
+  @include on-desktop {
+    flex: 1;
+    background-color: $color-sidebar-dark;
+  }
+}
+
+.page-column {
+  flex: 1;
+  background-color: $color-page-background;
+  padding: 40px 30px 0;
+
+  @include on-desktop {
+    padding-right: 0;
+    padding-left: $content-column-indent;
+  }
+}
+
+.boxed-panel {
+  position: relative;
+  border: $panel-border-width solid $color-sidebar-dark;
+  border-radius: $corner-radius;
+  background-color: white;
+  padding: 0.5rem;
+
+  @include on-desktop {
+    left: -50%;
+    margin-left: -$content-column-indent;
+  }
+}
+
+.site-nav {
+  display: flex;
+  font-size: 1rem;
+  line-height: 1.5rem;
+
+  @include on-mobile {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  @include on-desktop {
+    max-width: 620px;
+    justify-content: flex-end;
+    @include faded-until-hovered;
+  }
+}
+
+.site-nav-item {
+  @include on-desktop {
+    margin-left: 18px;
+  }
+}
+
+.site-nav-label {
+  @include on-mobile {
+    display: none;
+  }
+}
+
+.site-nav-icon {
+  display: none;
+
+  @include on-mobile {
+    display: block;
+  }
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.site-logo {
+  flex-shrink: 0;
+  margin-left: -270px;
+  border-radius: $corner-radius;
+}
+
+.site-title-wrapper {
+  padding: $rhythm 1.0875rem $rhythm 135px;
+}
+
+.site-title {
+  display: inline-block;
+  border-bottom: 3px solid $color-accent-teal;
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.events-heading {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  text-align: center;
+}
+
+.event {
+  position: relative;
+  margin: 5rem 0;
+
+  @include on-desktop {
+    margin: 7rem 0;
+  }
+}
+
+.event-when {
+  @include on-desktop {
+    position: absolute;
+    left: -$event-dates-overhang;
+    width: $event-text-width;
+    text-align: right;
+    color: $color-text-on-dark;
+  }
+}
+
+.event-dates {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.event-end-date {
+  margin-top: 0.25rem;
+}
+
+.event-venue,
+.event-organizer {
+  font-weight: $font-weight-light;
+}
+
+.event-what {
+  width: 100%;
+  max-width: $event-text-width;
+}
+
+.event-title {
+  font-size: 1.5rem;
+  font-weight: $font-weight-black;
+}
+
+.about-card {
+  max-width: 40rem;
+  margin: 0 auto 2.5rem;
+  padding: 2rem;
+  border-radius: $corner-radius;
+  background-color: white;
+  text-align: center;
+
+  @include on-desktop {
+    width: min(40rem, calc(100vw - 4rem));
+    max-width: none;
+    margin-left: -$content-column-indent;
+    transform: translateX(-50%);
+  }
+}
+
+.about-quote {
+  display: inline-block;
+  padding: 0.625rem;
+  font-size: 1.1em;
+  font-weight: $font-weight-light;
+  font-style: italic;
+}
+
+.not-found-heading {
+  margin-bottom: $rhythm;
+}

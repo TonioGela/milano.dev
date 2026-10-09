@@ -1,0 +1,31 @@
+{
+  "pins": {
+    "events-parsing": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "TonioGela",
+        "repo": "events-parsing"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "a2af19689dfdd305d9a033bab6c2eb9309fb21bd",
+      "url": "https://github.com/TonioGela/events-parsing/archive/a2af19689dfdd305d9a033bab6c2eb9309fb21bd.tar.gz",
+      "hash": "sha256-GKibgGXYE6H6x5PxnJlRvj4vul0RaGcvxZX4+DY2ZmA="
+    },
+    "nixpkgs": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NixOS",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixos-26.05",
+      "submodules": false,
+      "revision": "7c8764b7c7b09b34f632464276218ef9090eaa11",
+      "url": "https://github.com/NixOS/nixpkgs/archive/7c8764b7c7b09b34f632464276218ef9090eaa11.tar.gz",
+      "hash": "sha256-MWhktfFtFE8Jl7bf9Pkp7TR5MSdYCjCswSo0Gkb4ywc="
+    }
+  },
+  "version": 8
+}

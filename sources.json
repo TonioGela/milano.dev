@@ -1,0 +1,34 @@
+{
+  "meetup": [
+    "https://www.meetup.com/elixir-language-milano/",
+    "https://www.meetup.com/GDG-Cloud-Milano/",
+    "https://www.meetup.com/haskell-milano/",
+    "https://www.meetup.com/it-IT/Agile-Reloaded-Meetup",
+    "https://www.meetup.com/it-IT/Avanscoperta-Meetups-Workshops-Courses",
+    "https://www.meetup.com/it-IT/AWSusergroupItaly",
+    "https://www.meetup.com/it-IT/Crafted-Software",
+    "https://www.meetup.com/it-IT/Data-Science-Milan",
+    "https://www.meetup.com/it-IT/milano-scala-group/",
+    "https://www.meetup.com/italy-elastic-meetup-group/",
+    "https://www.meetup.com/kubernetes-and-cloud-native-milano/",
+    "https://www.meetup.com/Milan-Women-in-Machine-Learning-and-Data-Science/",
+    "https://www.meetup.com/Milano-Chatbots-Meetup/",
+    "https://www.meetup.com/milano-front-end/",
+    "https://www.meetup.com/milano-kafka-meetup/",
+    "https://www.meetup.com/nix-milano/",
+    "https://www.meetup.com/open-source-saturday-milano/",
+    "https://www.meetup.com/oracolo-del-test/",
+    "https://www.meetup.com/pugmilano/",
+    "https://www.meetup.com/rust-language-milan/",
+    "https://www.meetup.com/Scrum-Agile-Milano-SAM/",
+    "https://www.meetup.com/serverless-italy/",
+    "https://www.meetup.com/wordpress-meetup-milano/"
+  ],
+  "luma": [],
+  "eventbrite": [
+    "https://www.eventbrite.com/o/jug-milano-28234569107",
+    "https://www.eventbrite.it/o/papers-we-love-milano-26544873457",
+    "https://www.eventbrite.com/o/pymi-python-milano-14775617349"
+  ],
+  "custom": []
+}

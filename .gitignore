@@ -1,0 +1,9 @@
+public/
+static/processed_images/
+
+result
+result-*
+.direnv/
+
+.DS_Store
+data/events.json
