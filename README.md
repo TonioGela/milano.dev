@@ -1,6 +1,6 @@
 # milano.dev
 
-La bacheca per i developers a Milano. Sito statico costruito con [Zola](https://www.getzola.orgs) e pacchettizzato con [nix](https://nix.dev).
+La bacheca per i developers a Milano. Sito statico costruito con [Zola](https://www.getzola.org) e pacchettizzato con [nix](https://nix.dev).
 
 ## Aggiungere un evento, meetup, workshop o un'attività
 
