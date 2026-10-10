@@ -5,6 +5,8 @@ let
     builtins.toJSON {
       name = "milano-dev";
       compatibility_date = "2026-09-25";
+      workers_dev = false;
+      preview_urls = false;
       assets = {
         directory = "./public";
         not_found_handling = "404-page";
