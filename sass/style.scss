@@ -28,14 +28,6 @@ $desktop-min-width: 48rem;
   }
 }
 
-@mixin faded-until-hovered {
-  opacity: 0.4;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
 *,
 ::before,
 ::after {
@@ -171,7 +163,6 @@ p {
   @include on-desktop {
     max-width: 620px;
     justify-content: flex-end;
-    @include faded-until-hovered;
   }
 }
 

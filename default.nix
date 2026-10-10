@@ -1,8 +1,6 @@
-{
-  sources ? import ./npins,
-  pkgs ? import sources.nixpkgs { },
-}:
 let
+  sources = import ./npins;
+  pkgs = import sources.nixpkgs { };
   wrangler = pkgs.writeText "wrangler.jsonc" (
     builtins.toJSON {
       name = "milano-dev";

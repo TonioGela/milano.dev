@@ -1,12 +1,18 @@
-{
-  sources ? import ./npins,
-  pkgs ? import sources.nixpkgs { },
-}:
+let
+  sources = import ./npins;
+  pkgs = import sources.nixpkgs { };
+  cities = [
+    "Milano"
+    "Milan"
+    "Sesto San Giovanni"
+  ];
+in
 pkgs.mkShell {
   packages = [
     pkgs.npins
     pkgs.zola
     (pkgs.writeShellScriptBin "events" ''
+      export INPUT_CITIES="''${INPUT_CITIES:-${pkgs.lib.concatStringsSep "," cities}}"
       exec ${pkgs.nodejs}/bin/node ${sources.events-parsing}/index.js
     '')
     (pkgs.writeShellScriptBin "build" ''
