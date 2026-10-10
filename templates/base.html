@@ -38,8 +38,9 @@
       </nav>
 
       <header class="site-header">
-        {%- set logo = resize_image(path="static/logo.png", width=280, height=280, op="fit", format="webp") %}
-        <img class="site-logo" src="{{ logo.url }}" width="140" height="140" alt="" fetchpriority="high" />
+        {%- set logo = resize_image(path="static/logo.png", width=140, height=140, op="fit", format="webp") %}
+        {%- set logo2x = resize_image(path="static/logo.png", width=280, height=280, op="fit", format="webp") %}
+        <img class="site-logo" src="{{ logo.url }}" srcset="{{ logo.url }} 1x, {{ logo2x.url }} 2x" width="140" height="140" alt="" fetchpriority="high" />
         <div class="site-title-wrapper">
           <h1 class="site-title"><a href="/">{{ config.title }}</a></h1>
         </div>
