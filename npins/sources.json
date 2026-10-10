@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "a2af19689dfdd305d9a033bab6c2eb9309fb21bd",
-      "url": "https://github.com/TonioGela/events-parsing/archive/a2af19689dfdd305d9a033bab6c2eb9309fb21bd.tar.gz",
-      "hash": "sha256-GKibgGXYE6H6x5PxnJlRvj4vul0RaGcvxZX4+DY2ZmA="
+      "revision": "42e76c511610c51f8603b942f989f098f4cf021c",
+      "url": "https://github.com/TonioGela/events-parsing/archive/42e76c511610c51f8603b942f989f098f4cf021c.tar.gz",
+      "hash": "sha256-TBzn0LsubiNlRDoqlKl5ZRid47jhJMUGW1xoTS1gu98="
     },
     "nixpkgs": {
       "type": "Git",
