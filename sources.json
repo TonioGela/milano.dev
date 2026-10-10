@@ -25,7 +25,9 @@
     "https://www.meetup.com/serverless-italy/",
     "https://www.meetup.com/wordpress-meetup-milano/"
   ],
-  "luma": [],
+  "luma": [
+    "https://luma.com/react-milano"
+  ],
   "eventbrite": [
     "https://www.eventbrite.it/o/ai-italy-78997799613",
     "https://www.eventbrite.it/o/azure-meetup-milano-49286405593",
