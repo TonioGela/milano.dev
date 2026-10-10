@@ -1,5 +1,6 @@
 {
   "meetup": [
+    "https://www.meetup.com/ai-milan",
     "https://www.meetup.com/elixir-language-milano/",
     "https://www.meetup.com/GDG-Cloud-Milano/",
     "https://www.meetup.com/haskell-milano/",
@@ -26,9 +27,13 @@
   ],
   "luma": [],
   "eventbrite": [
+    "https://www.eventbrite.it/o/ai-italy-78997799613",
+    "https://www.eventbrite.it/o/azure-meetup-milano-49286405593",
+    "https://www.eventbrite.it/o/improove-70980005193",
     "https://www.eventbrite.com/o/jug-milano-28234569107",
     "https://www.eventbrite.it/o/papers-we-love-milano-26544873457",
-    "https://www.eventbrite.com/o/pymi-python-milano-14775617349"
+    "https://www.eventbrite.com/o/pymi-python-milano-14775617349",
+    "https://www.eventbrite.it/o/ugidotnet-8579360054"
   ],
   "custom": []
 }
