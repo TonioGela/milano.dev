@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+{% block content %}
+{%- set events = load_data(path="data/events.json") %}
+{%- set tz = "Europe/Rome" %}
+{%- set day = 86400 %}
+{#- Days are iterated at 12:00 UTC so DST never shifts them to another day in Europe/Rome. #}
+{%- set start = events[0].date | date(format="%Y-%m-01T12:00:00Z", timezone=tz) | date(format="%s") | int %}
+{%- set_global last_month = 0 %}
+{%- for e in events %}
+{%- set m = e.dateTo | default(value=e.date) | date(format="%Y%m", timezone=tz) | int %}
+{%- if m > last_month %}{% set_global last_month = m %}{% endif %}
+{%- endfor %}
+{#- ponytail: hard cap of ~2 years of calendar, raise it if events go further out #}
+{%- set end = start + 800 * day %}
+
+<div class="calendar">
+  {%- for ts in range(start=start, end=end, step_by=day) %}
+  {%- set key = ts | date(format="%Y%m%d", timezone=tz) | int %}
+  {%- if ts | date(format="%Y%m", timezone=tz) | int > last_month %}{% break %}{% endif %}
+  {%- set d = ts | date(format="%-d", timezone=tz) %}
+  {%- if d == "1" %}
+  {%- if not loop.first %}</div></section>{% endif %}
+  {%- set ym = ts | date(format="%Y%m", timezone=tz) %}
+  {%- set month_name = ts | date(format="%B %Y", timezone=tz, locale="it_IT") %}
+  {#- Months switch via hidden radios + labels: no JS. Day 1 + 32 days always falls in the next month. #}
+  {%- set next_ym = (ts + 32 * day) | date(format="%Y%m", timezone=tz) %}
+  <input class="cal-switch" type="radio" name="cal-month" id="m{{ ym }}" aria-label="{{ month_name }}" {% if loop.first %}checked{% endif %} />
+  <section class="cal-month">
+    <div class="cal-month-header">
+      {%- if loop.first %}<span class="cal-arrow"></span>{% else %}<label class="cal-arrow" for="m{{ prev_ym }}" title="mese precedente">‹</label>{% endif %}
+      <h2 class="cal-month-name">{{ month_name }}</h2>
+      {%- if next_ym | int > last_month %}<span class="cal-arrow"></span>{% else %}<label class="cal-arrow" for="m{{ next_ym }}" title="mese successivo">›</label>{% endif %}
+    </div>
+    {%- set_global prev_ym = ym %}
+    <div class="cal-grid">
+      <abbr title="lunedì">L</abbr><abbr title="martedì">M</abbr><abbr title="mercoledì">M</abbr><abbr
+        title="giovedì">G</abbr><abbr title="venerdì">V</abbr><abbr title="sabato">S</abbr><abbr
+        title="domenica">D</abbr>
+  {%- endif %}
+  {%- set_global has = false %}
+  {%- for e in events %}
+  {%- set a = e.date | date(format="%Y%m%d", timezone=tz) | int %}
+  {%- set b = e.dateTo | default(value=e.date) | date(format="%Y%m%d", timezone=tz) | int %}
+  {%- if key >= a and key <= b %}{% set_global has = true %}{% endif %}
+  {%- endfor %}
+  {%- set cls = "cal-day" %}{% if d == "1" %}{% set wd = ts | date(format="%u", timezone=tz) %}{% set cls = cls ~ " cal-wd-" ~ wd %}{% endif %}
+  {%- if has %}
+      <label class="{{ cls }} cal-has-events" for="d{{ key }}">{{ d }}</label>
+  {%- else %}
+      <span class="{{ cls }}">{{ d }}</span>
+  {%- endif %}
+  {%- endfor %}
+    </div>
+  </section>
+</div>
+
+<div class="cal-details event-list">
+  {%- for ts in range(start=start, end=end, step_by=day) %}
+  {%- set key = ts | date(format="%Y%m%d", timezone=tz) | int %}
+  {%- if ts | date(format="%Y%m", timezone=tz) | int > last_month %}{% break %}{% endif %}
+  {%- set_global opened = false %}
+  {%- for e in events %}
+  {%- set a = e.date | date(format="%Y%m%d", timezone=tz) | int %}
+  {%- set b = e.dateTo | default(value=e.date) | date(format="%Y%m%d", timezone=tz) | int %}
+  {%- if key >= a and key <= b %}
+  {%- if not opened %}<input class="cal-switch" type="radio" name="cal-day" id="d{{ key }}" aria-label="{{ ts | date(format="%A %-d %B %Y", timezone=tz, locale="it_IT") }}" /><section class="cal-details-day">{% set_global opened = true %}{% endif %}
+  {{ macros::event(event=e) }}
+  {%- endif %}
+  {%- endfor %}
+  {%- if opened %}</section>{% endif %}
+  {%- endfor %}
+</div>
+{% endblock %}
