@@ -56,10 +56,12 @@ pkgs.stdenvNoCC.mkDerivation {
     runHook preInstall
     mkdir -p $out
     cp -r public $out/public
-    # cachebusted stylesheet URL changes with every CSS edit: preload it (sent as Early Hints by Cloudflare)
+    # cachebusted stylesheet URL changes with every CSS edit: preload it (sent as Early Hints by Cloudflare).
+    # The preload must match the <link>: same integrity and no crossorigin, or the browser fetches it twice
     css=$(grep -o 'style\.css?h=[0-9a-f]*' public/index.html | head -1)
-    [ -n "$css" ]
-    { cat ${headers}; echo "  Link: </$css>; rel=preload; as=style"; } > $out/public/_headers
+    sri=$(grep -o 'sha512-[A-Za-z0-9+/=]*' public/index.html | head -1)
+    [ -n "$css" ] && [ -n "$sri" ]
+    { cat ${headers}; printf '  Link: </%s>; rel=preload; as=style; integrity="%s"\n' "$css" "$sri"; } > $out/public/_headers
     cp ${wrangler} $out/wrangler.jsonc
     runHook postInstall
   '';
